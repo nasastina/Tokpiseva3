@@ -1,0 +1,33 @@
+body {
+    font-family: 'Verdana', sans-serif;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 50px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-bottom: 100px;
+}
+
+tr,
+th,
+td {
+    border: 1px solid black;
+    padding: 5px 18px;
+    text-align: center;
+}
+
+.table_container {
+    float: left;
+    margin-right: 30px;
+}

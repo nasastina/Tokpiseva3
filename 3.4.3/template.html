@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Vorsin Aleksey Andreevich 3.4.3</title>
+    <style>
+        body{
+            font-family: Verdana, sans-serif;
+            text-align: center;
+        }
+
+        img{
+            -o-object-fit: contain;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+           border: 1px solid black;
+           padding: 5px;
+        }
+
+        td {
+           border: 1px solid black;
+           padding: 5px;
+        }
+
+        .noBorder{
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="header">Аналитика по зарплатам и городам для профессии {{ profession_name }}</h1>
+    <img src="E:\Users\Алексей Ворсин\PycharmProjects\Vorsin\3.4.3\{{ graph }}">
+
+    {% macro get_by_area(dicts_by_area) -%}
+    {% for i in range(dicts_by_area[0] | length) -%}
+        <tr>
+            <td>{{ keys_0_area[i] }}</td>
+            <td>{{ values_0_area[i] }}</td>
+            <td class="noBorder"></td>
+            <td>{{ keys_1_area[i] }}</td>
+            <td>{{ ((values_1_area[i] * 100)|round(2))|string + "%" }}</td>
+        </tr>
+    {%- endfor %}
+    {%- endmacro %}
+
+    {% macro get_by_year(dicts_by_year) -%}
+    {% for year, value in dicts_by_year[0].items() -%}
+        <tr>
+            <td>{{ year }}</td>
+            <td>{{ value }}</td>
+            <td>{{ dicts_by_year[1][year] }}</td>
+        </tr>
+    {%- endfor %}
+    {%- endmacro %}
+
+    <h2>Статистика по годам для выбранной профессии и региона</h2>
+    <table>
+        <tr>
+            <th>Год</th>
+            <th>Средняя зарплата - {{ profession_name }}, регион - {{ area_name }}</th>
+            <th>Количество вакансий - {{ profession_name }}, регион - {{ area_name }}</th>
+        </tr>
+        {{ get_by_year(year_dict) }}
+    </table>
+
+    <h2>Статистика по городам</h2>
+    <table>
+        <tr>
+            <th>Город</th>
+            <th>Уровень зарплат</th>
+            <th class="noBorder"></th>
+            <th>Город</th>
+            <th>Доля вакансий</th>
+        </tr>
+        {{ get_by_area(area_dict) }}
+    </table>
+</body>
+</html>
